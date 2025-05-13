@@ -38,6 +38,8 @@ def show_main_menu():
         ct.CTkButton(content_frame, text=table, width=300,
                      anchor="w", command=lambda t=table: show_table_view(t)).pack(pady=5)
 
+    ct.CTkButton(content_frame, text="About", width=300, command=show_about_window).pack(pady=40)
+
 def show_table_view(table_name):
     for widget in content_frame.winfo_children():
         widget.destroy()
@@ -242,6 +244,39 @@ def open_add_window(table_name):
 
     save_button = ct.CTkButton(add_win, text="Save", command=save_new_row)
     save_button.pack(pady=20)
+
+def show_about_window():
+    for widget in content_frame.winfo_children():
+        widget.destroy()
+
+    back_button = ct.CTkButton(content_frame, text="← Back", command=show_main_menu)
+    back_button.pack(anchor="w", pady=(10, 10))
+
+    ct.CTkLabel(content_frame, text='Курсова робота з предмету "Бази даних" на тему "Доставка піци"',
+                font=ct.CTkFont(size=16, weight="bold")).pack(pady=(20, 10))
+
+    description = (
+        "Виробник піци (мережа пекарень і кафе) як роботодавець запрошує громадян на "
+    "роботу по доставці піци замовникам. Будь-який громадянин може приєднатися до угоди з "
+    "виробником і почати працювати кур’єром по доставці піци, для цього достатньо даних "
+    "паспорта і ІПН. Виробник приймає замовлення на піцу на сайті або телефоном. Замовник "
+    "повідомляє виробнику адресу. Як правило, замовлення має бути виконано протягом "
+    "години. Мінімальна вартість замовлення 300грн. В разі самовивозу знижка 18%. Воно "
+    "автоматично направляється в найближчу до замовника пекарню. "
+    "Кур’єр забирає з пекарні кілька замовлень, а також бере роздрукований перелік "
+    "взятих замовлень. Коли піца доставлена замовнику, останній розписується в переліку "
+    "замовлень, а також оплачує замовлення (готівкою, по QR-коду або за реквізитами), якщо "
+    "не зробив цього на сайті. Виробник нараховує кур’єру оплату замовлення (яка відповідає "
+    "потенційній сумі знижки за самовивіз) після того, як побачить на сайті відмітку замовника "
+    "щодо доставленої піци або зателефонує замовнику. "
+    "Власників мережі цікавлять дані в динаміці по реалізації піци залежно від "
+    "розташування замовників, а також обороти і прибутки окремих пекарень, і мережі в "
+    "цілому.\n\n "
+    )
+    ct.CTkLabel(content_frame, text=description, wraplength=800, justify="left").pack(padx=20, pady=10)
+
+    ct.CTkLabel(content_frame, text='Виконав студент групи ІС-34 Бакунець Владислав',
+                font=ct.CTkFont(size=14, weight="bold")).pack(pady=(20, 10))
 
 # Запуск
 show_main_menu()
